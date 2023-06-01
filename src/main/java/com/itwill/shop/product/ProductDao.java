@@ -271,6 +271,7 @@ public class ProductDao {
 							rs.getInt("ca_no"));
 			categorySortList.add(product);
 		}
+		
 		pstmt.close();
 		con.close();
 		return categorySortList;
