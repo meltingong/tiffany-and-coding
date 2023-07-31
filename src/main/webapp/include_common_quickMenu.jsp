@@ -14,9 +14,9 @@
 <body>
 <div class="quickmenu">
  <%if(sUserId != null){ %>
- <a href="chat-room.jsp"><img width ="50px" height="50px" src="image/chatting.png" border="0"><br>실시간 채팅</a>
+ <a href="chat-room.jsp"><img width ="50px" height="50px" src="image/chatting.png" border="0"><br>채팅 목록</a>
 <%}else{%>
-	<a href="user_login_form.jsp"><img width ="50px" height="50px" src="image/chatting.png" border="0"><br>실시간 채팅</a>
+	<a href="user_login_form.jsp"><img width ="50px" height="50px" src="image/chatting.png" border="0"><br>채팅 목록</a>
 <%} %>
 
 </div>

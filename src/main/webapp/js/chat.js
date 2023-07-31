@@ -43,7 +43,7 @@ function loadChatHistory(chatRoomNo) {
   $.ajax({
     type: "GET",
     url: "GetChatHistoryServlet", // 서버 측 서블릿 또는 컨트롤러의 URL로 변경해야 합니다.
-    data: { roomNo: chatRoomNo },
+    data: { room_no: chatRoomNo },
     dataType: "json",
     success: function (response) {
       // 서버 응답을 처리하고 HTML에서 채팅 내역을 업데이트합니다.
