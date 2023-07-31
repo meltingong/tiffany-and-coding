@@ -49,7 +49,9 @@ function loadChatHistory(chatRoomNo) {
       // 서버 응답을 처리하고 HTML에서 채팅 내역을 업데이트합니다.
       updateChatHistory(response);
     },
-    error: function () {
+   error: function (xhr, status, error) {
+      // 에러 메시지를 출력합니다.
+      console.error("AJAX 요청이 실패했습니다. 상태 코드: " + xhr.status + ", 에러: " + error);
       alert("채팅 내역을 불러오는데 실패했습니다.");
     }
   });

@@ -19,6 +19,16 @@ public class GetChatHistoryServlet extends HttpServlet{
 	
 	private ChatMsgService chatMsgService;
   
+	@Override
+	public void init() throws ServletException {
+		// ChatMsgService 객체를 생성합니다.
+		try {
+			chatMsgService = new ChatMsgService();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    int room_no = Integer.parseInt(request.getParameter("room_no"));
 	    // ChatMsgService를 호출하여 채팅방 번호에 해당하는 채팅 메시지를 가져옵니다.
