@@ -1,0 +1,17 @@
+div{-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding:0;margin:0}
+a {text-decoration:none;}
+
+.quickmenu {position:absolute;width:90px;top:50%;margin-top:-50px;right:10px;background:#fff;}
+.quickmenu a:hover {color:#000;}
+.quickmenu a:last-child {border-bottom:0;}
+.quickmenu a {
+	font-size: 12px;
+	position: center;
+	position: relative; /* 요소를 상대적으로 위치시킵니다. */
+    display: block; /* a 태그를 블록 요소로 만들어 이미지 영역의 크기에 맞게 설정합니다. */
+    text-align: center; /* 텍스트를 가운데 정렬합니다. */
+    top: 50%; /* 요소의 상단을 세로 방향으로 50% 이동시킵니다. */
+    left: 0; /* 요소를 가로 방향으로 왼쪽으로 이동시킵니다. */
+    transform: translateY(50%); /* 요소의 세로 방향으로 절반 만큼 더 이동시킵니다. */
+}
+.content {position:relative;min-height:1000px;}
