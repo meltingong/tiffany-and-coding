@@ -19,7 +19,7 @@
 	chatRoomList = chatRoomService.chatRoomList(sUserId);
 	ChatRoom chatRoom = new ChatRoom();
 	ChatMsgService chatMsgService = new ChatMsgService();
-	List<ChatMsg> chatMsgList = new ArrayList<>();
+	List<ChatMsg> notReadChatMsgList = new ArrayList<>();
 	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -396,7 +396,9 @@ color:#070a57;
 }
 
 </style>
-<jsp:include page="include_mouseffect.jsp"/>
+<jsp:include page="include_mouseffect.jsp"/> 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="js/chat.js"></script>
 </head>
 <body>
 	<jsp:include page="include_common_top.jsp"/>
@@ -409,19 +411,18 @@ color:#070a57;
 				<%for(int i =0; i < chatRoomList.size(); i++){ %>
                 <% chatRoom = chatRoomList.get(i);%>
                 <ul class="list-unstyled chat-list mt-2 mb-0" id="chatRoomList">
-               
                 <li class="clearfix" id="btnCall" value=<%=chatRoom.getRoom_no() %>>
                     <img src="image/ice-cream.png" width ="30px" height="40px" alt="avatar" ><%=chatRoom.getRoomName()%>
                         
                        <!--  <c:set var = "image_name" value = "${list.p_img}"/>-->
                         <div class="about">
-							<input name="chatRoomNo" type="hidden" value=<%chatRoom.getRoom_no();%>/>
+							<input name="chatRoomNo" type="hidden" value=<%=chatRoom.getRoom_no()%>/>
 					<!--	<button type="button" class="btn btn-default" id="btnCall${list.c_room_no}" value=${list.c_room_no}>${list.c_room_no}</button>-->
-                            <%chatMsgList = chatMsgService.selectNotReadMsg(chatRoom.getRoom_no(),sUserId); %>
-                            <%for(int j=0; j<chatMsgList.size(); j++){ %>
-                            	<%if(j == chatMsgList.size()-1){%>
-                            		<%chatMsg = chatMsgList.get(j); %>
-		                            <div class="name" ></div> 
+                            <%notReadChatMsgList = chatMsgService.selectNotReadMsg(chatRoom.getRoom_no(),sUserId); %>
+                            <%for(int j=0; j < notReadChatMsgList.size(); j++){ %>
+                            	<%if(j == notReadChatMsgList.size()-1){%>
+                            		<%chatMsg = notReadChatMsgList.get(j); %>
+		                           <!--   <div class="name" ></div> -->
 		                            <div class="content"> <i class="fa fa-circle offline"></i><%=chatMsg.getMsgContent() %>&nbsp;&nbsp;&nbsp;&nbsp;<%=chatMsgService.countNotReadMsg(chatRoom.getRoom_no(), sUserId) %></div>
                             	<%} %>                                            
                             <%} %>
