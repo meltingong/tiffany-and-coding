@@ -165,4 +165,4 @@ values(chatMsg_msgNo_SEQ.nextval,'나야',sysdate,0,'test1',1);
 insert into chatmsg(msgNo,msgcontent,msgsendtime,msgread,userid,room_no)
 values(chatMsg_msgNo_SEQ.nextval,'3개될거니',sysdate,0,'test1',1);
 insert into chatmsg(msgNo,msgcontent,msgsendtime,msgread,userid,room_no)
-values(chatMsg_msgNo_SEQ.nextval,'테스트',sysdate,0,'test3',2);
+values(chatMsg_msgNo_SEQ.nextval,'테스트',sysdate,0,'test1',2);
