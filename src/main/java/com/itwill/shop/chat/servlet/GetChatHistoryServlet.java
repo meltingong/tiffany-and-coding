@@ -30,7 +30,7 @@ public class GetChatHistoryServlet extends HttpServlet{
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    int room_no = Integer.parseInt(request.getParameter("room_no"));
+		int room_no = Integer.parseInt(request.getParameter("room_no").replace("/", ""));
 	    // ChatMsgService를 호출하여 채팅방 번호에 해당하는 채팅 메시지를 가져옵니다.
 	    List<ChatMsg> chatMessages = chatMsgService.selectChatByRoomNo(room_no);
 	    
