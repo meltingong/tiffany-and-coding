@@ -94,6 +94,8 @@ body{
     padding: 20px;
     border-bottom: 2px solid #fff;
     height: 500px;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .chat .chat-history ul {
@@ -147,10 +149,11 @@ body{
 }
 
 .chat .chat-history .my-message {
-    background:#ffc9ce;
+    background:#81d8d0;
     margin-top: 10px;
     margin-bottom: 10px;
-    float: right;
+    display: inline-block;
+    align-self: flex-end;
 }
 
 .chat .chat-history .my-message:after {
@@ -166,12 +169,12 @@ body{
     border-width: 10px;
     margin-left: -10px
 }
-
+/*
 .chat .chat-history .message {
     background:#81d8d0;
     margin-top: 10px;
     margin-bottom: 10px;
-    float: right;
+    align-self: flex-end; 
 }
 
 .chat .chat-history .message:after {
@@ -187,12 +190,13 @@ body{
     border-width: 10px;
     margin-left: -10px
 }
-
+*/
 
 .chat .chat-history .other-message {
     background: #ffeeef;
     margin-top: 10px;
     margin-bottom: 10px;
+    
 }
 
 .chat .chat-history .other-message:after {

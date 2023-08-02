@@ -187,7 +187,7 @@ color:#070a57;
     line-height: 26px;
     font-size: 16px;
     border-radius: 7px;
-    display: inline-block;
+    display: block;
     position: relative
 }
 /******* 가운데 정렬 *******/
@@ -219,11 +219,11 @@ color:#070a57;
     margin-left: -10px
 }
 
-.chat .chat-history .my-message {
+.chat .chat-history .notice {
     background: #fdf2d0
 }
 
-.chat .chat-history .my-message:after {
+.chat .chat-history .notice:after {
     bottom: 100%;
     left: 30px;
     border: solid transparent;
@@ -237,7 +237,7 @@ color:#070a57;
     margin-left: -10px
 }
 
-.chat .chat-history .other-message {
+.chat .chat-history .notice2 {
 
     background: orange;  
 	/* 내 메시지 오른쪽 정렬 
@@ -246,7 +246,7 @@ color:#070a57;
     text-align: left;
 }
 
-.chat .chat-history .other-message:after {
+.chat .chat-history .notice2:after {
    
     border-bottom-color: orange; 
 
@@ -415,11 +415,11 @@ color:#070a57;
                 <input name="to_id" id="to_id" type="hidden" value=<%=chatRoom.getTo_id()%>>
                 <ul class="list-unstyled chat-list mt-2 mb-0" id="chatRoomList">
                 <li class="clearfix" id="btnCall" value=<%=chatRoom.getRoom_no()%>>
+					<input name="chatRoomNo" type="hidden" value=<%=chatRoom.getRoom_no()%>>
                     <img src="image/ice-cream.png" width ="30px" height="40px" alt="avatar" ><%=chatRoom.getRoomName()%>
                         
                        <!--  <c:set var = "image_name" value = "${list.p_img}"/>-->
                         <div class="about">
-							<input name="chatRoomNo" type="hidden" value=<%=chatRoom.getRoom_no()%>>
 					<!--	<button type="button" class="btn btn-default" id="btnCall${list.c_room_no}" value=${list.c_room_no}>${list.c_room_no}</button>-->
                             <%notReadChatMsgList = chatMsgService.selectChatByRoomNo(chatRoom.getRoom_no()); %>
                             <%for(int j=0; j < notReadChatMsgList.size(); j++){ %>
@@ -477,8 +477,8 @@ color:#070a57;
 											alt>
 										<span class="message-data-adminGongji">흙토끼</span>
 									</div>
-									
-									<div class="message my-message">
+									 
+									<div class="message notice">
 									<h6><b>기본매너</b></h6>
 									<p>기본적으로 지켜야하는 매너에는 무엇이 있을까요?</p>
 									<p>· 서로 존중해요. 우리 존댓말로 대화해요.<br>
@@ -496,7 +496,7 @@ color:#070a57;
 											alt>
 										<span class="message-data-adminGongji">금토끼</span>
 									</div>
-									<div class="message other-message float-right">
+									<div class="message notice2 float-right">
 									<h6><b>이런 행동은 할 수 없어요.</b></h6>
 									<p><br>
 									   · 판매 금지 물품 거래.<br>
@@ -514,6 +514,7 @@ color:#070a57;
 
 							</ul>
 						</div>
+						 
 						<div class="chat-message clearfix">
 							<div class="input-group mb-0">
 							<!-- 전송 버튼 -->

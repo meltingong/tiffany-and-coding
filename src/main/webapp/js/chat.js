@@ -33,7 +33,7 @@ var jsonData = {
 // 채팅방 클릭
 $(document).ready(function () {
   // 채팅방 클릭 이벤트 처리
-  $("#chatRoomList").on("click", "li", function () {
+  $(document).on("click", "#chatRoomList li", function () {
     const chatRoomNo = $(this).find("input[name='chatRoomNo']").val();
    // const chatRoomName = $(this).find("input[name='chatRoomName']").val();
     //const otherName = $(this).find("input[name='to_id']").val();
@@ -77,7 +77,7 @@ function updateChatHistory(chatMessages) {
     // 각 메시지를 chat-history div에 추가합니다.
     // 필요한 형식에 맞게 메시지를 포매팅합니다.
     $("#chat-history").append(
-      '<div class="message">' + chatMsg.msgContent + '</div>'
+      '<div class="message my-message">' + chatMsg.msgContent + '</div>'
     );
   }
 }

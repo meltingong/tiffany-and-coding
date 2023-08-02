@@ -105,8 +105,10 @@ List<BoardComment> boardCommentList = boardCommentService.findBoardCommentList(b
 		location.href = 'board_view.jsp';
 	}
 	
-	function chatting(){
-		
+	function insertChatRoom(){
+		document.f.action = "chat_insert_action.jsp";
+		document.f.method = "POST";
+		document.f.submit();
 	}
 	
 </script>
@@ -180,7 +182,7 @@ List<BoardComment> boardCommentList = boardCommentService.findBoardCommentList(b
 										<input type="button" value="삭 제" onClick="boardRemove()"> &nbsp;&nbsp; 
 										<%} %>
 										<input type="button" value="게시판 리스트" onClick="boardList()"> &nbsp;&nbsp;
-										<input type="button" value="1:1채팅하기" onClick="">  
+										<input type="button" value="1:1채팅하기" onClick="insertChatRoom()">  
 										</td>
 								</tr>
 							</table>
