@@ -35,6 +35,9 @@ $(document).ready(function () {
   // 채팅방 클릭 이벤트 처리
   $("#chatRoomList").on("click", "li", function () {
     const chatRoomNo = $(this).find("input[name='chatRoomNo']").val();
+   // const chatRoomName = $(this).find("input[name='chatRoomName']").val();
+    //const otherName = $(this).find("input[name='to_id']").val();
+    
     loadChatHistory(chatRoomNo);
   });
 });
@@ -43,11 +46,17 @@ function loadChatHistory(chatRoomNo) {
   $.ajax({
     type: "GET",
     url: "GetChatHistoryServlet", // 서버 측 서블릿 또는 컨트롤러의 URL로 변경해야 합니다.
-    data: { room_no: chatRoomNo },
+    data: { room_no: chatRoomNo 
+    		//room_name : chatRoomName,
+    		//to_id: otherName
+    		},
     dataType: "json",
     success: function (response) {
       // 서버 응답을 처리하고 HTML에서 채팅 내역을 업데이트합니다.
       updateChatHistory(response);
+       // 채팅방 이름과 채팅 상대를 업데이트합니다.
+            //$("#updateRoomName").text(chatRoomName);
+           // $("#updateToId").text(otherName);
     },
    error: function (xhr, status, error) {
       // 에러 메시지를 출력합니다.

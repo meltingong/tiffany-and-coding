@@ -6,7 +6,7 @@ public class ChatMsgSQL {
 			+ "values(chatMsg_msgNo_SEQ.nextval,?,sysdate,?,?,room_room_no_SEQ.currval)";
 	public static final String CHATMSG_DELETE = "delete from chatMsg where msgNo=?";
 	public static final String CHATMSG_UPDATE_DELETE_MSG = "update chatMsg set msgcontent=? where msgNo=?";
-	public static final String CHATMSG_READ_UPDATE = "update chatMsg set msgread=? where roomNo=? and userId=?";
+	public static final String CHATMSG_READ_UPDATE = "update chatMsg set msgread=1 where msgread=0 and room_no=? and userId=?";
 	public static final String COUNT_ALL_NOT_READ_MSG = "select count(*) from chatMsg where msgread=0";
 	public static final String SELECT_ALL_NOT_READ_MSG = "select * from chatMsg where userId=?";
 	public static final String COUNT_NOT_READ_MSG = "select count(*) from chatMsg where room_no=? and msgread=0 and userid=?";

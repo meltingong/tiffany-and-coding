@@ -83,21 +83,26 @@ public class ChatMsgDaoImpl implements ChatMsgDao{
 
 	@Override
 	public int countNotReadMsg(int roomNo, String userId) {
-		int rowCount = 0;
+		int count = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(ChatMsgSQL.COUNT_NOT_READ_MSG);
 			pstmt.setInt(1, roomNo);
 			pstmt.setString(2,userId);
-			rowCount = pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+			
 			pstmt.close();
 			con.close();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return rowCount;
+		return count;
 	}
 
 	@Override
@@ -160,9 +165,8 @@ public class ChatMsgDaoImpl implements ChatMsgDao{
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(ChatMsgSQL.CHATMSG_READ_UPDATE);
-			pstmt.setInt(1,1);
-			pstmt.setInt(2, roomNo);
-			pstmt.setString(3, userId);
+			pstmt.setInt(1, roomNo);
+			pstmt.setString(2, userId);
 			rowCount = pstmt.executeUpdate();
 			pstmt.close();
 			con.close();

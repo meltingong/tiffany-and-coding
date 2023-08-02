@@ -31,6 +31,7 @@
 <link rel=stylesheet href="css/user.css" type="text/css">
 <link rel=stylesheet href="css/board.css" type="text/css">
 <link rel=stylesheet href="css/shop.css" type="text/css">
+<link rel=stylesheet href="css/chat.css" type="text/css">
 
 <style type="text/css">
 body{
@@ -410,20 +411,26 @@ color:#070a57;
 				<input name="loginId" id="loginId" type="hidden" value=<%=findUser.getUserId()%>>
 				<%for(int i =0; i < chatRoomList.size(); i++){ %>
                 <% chatRoom = chatRoomList.get(i);%>
+                <input name="chatRoomName" id="chatRoomName" type="hidden" value=<%=chatRoom.getRoomName()%>>
+                <input name="to_id" id="to_id" type="hidden" value=<%=chatRoom.getTo_id()%>>
                 <ul class="list-unstyled chat-list mt-2 mb-0" id="chatRoomList">
-                <li class="clearfix" id="btnCall" value=<%=chatRoom.getRoom_no() %>>
+                <li class="clearfix" id="btnCall" value=<%=chatRoom.getRoom_no()%>>
                     <img src="image/ice-cream.png" width ="30px" height="40px" alt="avatar" ><%=chatRoom.getRoomName()%>
                         
                        <!--  <c:set var = "image_name" value = "${list.p_img}"/>-->
                         <div class="about">
-							<input name="chatRoomNo" type="hidden" value=<%=chatRoom.getRoom_no()%>/>
+							<input name="chatRoomNo" type="hidden" value=<%=chatRoom.getRoom_no()%>>
 					<!--	<button type="button" class="btn btn-default" id="btnCall${list.c_room_no}" value=${list.c_room_no}>${list.c_room_no}</button>-->
-                            <%notReadChatMsgList = chatMsgService.selectNotReadMsg(chatRoom.getRoom_no(),sUserId); %>
+                            <%notReadChatMsgList = chatMsgService.selectChatByRoomNo(chatRoom.getRoom_no()); %>
                             <%for(int j=0; j < notReadChatMsgList.size(); j++){ %>
                             	<%if(j == notReadChatMsgList.size()-1){%>
                             		<%chatMsg = notReadChatMsgList.get(j); %>
 		                           <!--   <div class="name" ></div> -->
-		                            <div class="content"> <i class="fa fa-circle offline"></i><%=chatMsg.getMsgContent() %>&nbsp;&nbsp;&nbsp;&nbsp;<%=chatMsgService.countNotReadMsg(chatRoom.getRoom_no(), sUserId) %></div>
+		                            <div class="content"> <i class="fa fa-circle offline"></i>
+		                            <%=chatMsg.getMsgContent() %>&nbsp;&nbsp;&nbsp;&nbsp;
+		                            <% if(chatMsgService.countNotReadMsg(chatRoom.getRoom_no(), sUserId)!=0) { %>
+		                           		<%=chatMsgService.countNotReadMsg(chatRoom.getRoom_no(), sUserId) %></div>
+                            		<%} %>
                             	<%} %>                                            
                             <%} %>
                         </div>
@@ -443,13 +450,12 @@ color:#070a57;
 										alt="avatar" style="float:left;"> 
 									</a>-->
 									<div class="chat-about">
-										<input name="myId" id="myId" type="hidden" value=>
+										<input name="myId" id="myId" type="hidden" value=<%=sUserId %>>
 										<input name="path" id="path" type="hidden" value=>
 										<input name="newChatRoomNo" id="newChatRoomNo" type="hidden" value=>
-										<h6 class="m-b-0" style="margin-bottom:2px;"><b>대장 토끼</b></h6>
-										<small>자주 묻는 질문</small>
-										
-										
+											<div id="updateRoomName" class="m-b-0" style="margin-bottom:2px;"><b>공지사항</b><br><br>
+												<small id="updateToId">대장토끼</small>
+											</div>
 									</div>
 								</div>
 								<div class="col-lg-4">
@@ -476,8 +482,8 @@ color:#070a57;
 									<h6><b>기본매너</b></h6>
 									<p>기본적으로 지켜야하는 매너에는 무엇이 있을까요?</p>
 									<p>· 서로 존중해요. 우리 존댓말로 대화해요.<br>
-									   · 모두의 시간은 소중합니다. 시간 약속을 꼭 지켜주세요.<br>
-									   · 절대로 중간에 연락 끊기는 일이 없도록 해요.<br>
+									   · 모두의 시간은 소중합니다.<br>
+									   · 절대로 비하, 비판은 하지 않아요.<br>
 									   · 따듯한 감사 인사로 마무리를 지어요.<br>
 									   · 늦은 시간 채팅은 부담스러울 수 있어요.<br>
 									</p>

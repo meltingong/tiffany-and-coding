@@ -150,6 +150,7 @@ body{
     background:#ffc9ce;
     margin-top: 10px;
     margin-bottom: 10px;
+    float: right;
 }
 
 .chat .chat-history .my-message:after {
@@ -165,6 +166,28 @@ body{
     border-width: 10px;
     margin-left: -10px
 }
+
+.chat .chat-history .message {
+    background:#81d8d0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: right;
+}
+
+.chat .chat-history .message:after {
+    bottom: 100%;
+    left: 30px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-bottom-color: #efefef;
+    border-width: 10px;
+    margin-left: -10px
+}
+
 
 .chat .chat-history .other-message {
     background: #ffeeef;
